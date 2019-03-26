@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1"
+         metadata-complete="false">
+
+
+  <!--注册一个前端控制器
+      DispatcherServlet
+  -->
+  <servlet>
+    <!--这里有讲究的
+      如果不去修改spring配置文件默认的位置,那么springMVC
+      它回去web-inf下面找一个叫做springmvc-servlet.xml文件
+    -->
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--可以重新声明配置文件的名字-->
+    <!--<init-param>-->
+      <!--<param-name>namespace</param-name>-->
+      <!--<param-value>mvc</param-value>-->
+    <!--</init-param>-->
+    <init-param>
+      <!--上下文位置的指定
+        然后就可以把springmvc-servlet.xml文件放在resources下,就不用放在WEB-INF下
+      -->
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc-servlet.xml</param-value>
+    </init-param>
+  </servlet>
+
+
+  <!--servlet映射配置-->
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <!--这里统一写一个斜杠-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>
